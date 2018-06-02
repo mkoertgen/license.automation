@@ -1,0 +1,46 @@
+version: '3.4'
+
+volumes:
+  json_volume:
+  es_volume:
+
+services:
+  scancode:
+    image: awesomeinc/scancode.rest:${VERSION:-latest}
+    build:
+      context: ./scancode
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
+    ports: [ '5000:5000' ]
+  
+  filebeat:
+    image: docker.elastic.co/kibana/filebeat-oss:${ELK_VERSION}
+    depends_on: [ scancode, elasticsearch ]
+    # TODO volumes for json & config
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:${ELK_VERSION}
+    ports: [ '9200:9200', '9300:9300' ]
+    volumes:
+      - es_volume:/usr/share/elasticsearch/data
+    environment:
+      # cf.: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-configuration-methods
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      network.host: 0.0.0.0
+      node.max_local_storage_nodes: 1
+      cluster.name: elastic.scancode
+      bootstrap.memory_lock: 'true'
+      discovery.type: single-node
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:${ELK_VERSION}
+    ports: [ '5601:5601' ]
+    depends_on: [ elasticsearch ]
+    environment:
+      # cf.: https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
+      SERVER_NAME: kibana.docker.scancode
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      #KIBANA_DEFAULTAPPID: dashboard/Main_Dashboard
+    
