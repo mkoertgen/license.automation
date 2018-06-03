@@ -1,23 +1,36 @@
 version: '3.4'
 
+x-proxy: &proxy
+  http_proxy: ${http_proxy}
+  https_proxy: ${https_proxy}
+  no_proxy: ${no_proxy}
+
 volumes:
   json_volume:
   es_volume:
 
 services:
-  scancode:
-    image: awesomeinc/scancode.rest:${VERSION:-latest}
+  # scancode:
+  #   build:
+  #     context: ./scancode
+  #     args:
+  #       <<: *proxy
+  #   environment:
+  #     <<: *proxy
+  #   ports: [ '5000:5000' ]
+
+  license_finder:
     build:
-      context: ./scancode
+      context: ./license_finder
       args:
-        http_proxy: ${http_proxy}
-        https_proxy: ${https_proxy}
-        no_proxy: ${no_proxy}
+        <<: *proxy
+    environment:
+      <<: *proxy
     ports: [ '5000:5000' ]
   
   filebeat:
     image: docker.elastic.co/kibana/filebeat-oss:${ELK_VERSION}
-    depends_on: [ scancode, elasticsearch ]
+    depends_on: [ elasticsearch ]
     # TODO volumes for json & config
 
   elasticsearch:
