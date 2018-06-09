@@ -32,5 +32,9 @@ gem 'http', '~> 3.3'
 
 group :development do
   gem 'rubocop', require: false
+end
+
+group :test do
   gem 'simplecov', require: false
+  gem 'webmock', '~> 2.1'
 end

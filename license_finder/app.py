@@ -34,9 +34,10 @@ def scan_project():
     if 'source_url' not in request_data:
         return display_help()
     source_url = request_data['source_url']
-    if 'commit_id' not in request_data:
-        return display_help()
-    commit_id = request_data['commit_id']
+
+    commit_id = 'HEAD'
+    if 'commit_id' in request_data:
+      commit_id = request_data['commit_id']
 
     format_param = DEFAULT_RESULT_FORMAT
     if 'format' in request_data:
@@ -72,7 +73,7 @@ def git_fetch(source_url, commit):
     project_name = get_project_name(source_url)
     git_repo_dir = tempfile.mkdtemp(prefix=project_name, suffix="-" + commit)
     subprocess.check_call(['git', 'clone', source_url, git_repo_dir])
-    subprocess.check_call(['git', 'checkout', commit], cwd=git_repo_dir)
+    subprocess.check_call(['git', 'checkout', commit], cwd=git_repo_dir) if commit != 'HEAD'
     return git_repo_dir
 
 
@@ -85,7 +86,7 @@ def get_project_name(source_url):
 
 def find_licenses(source_dir, output_file, format_param):
     # csv 2 json? https://stackoverflow.com/questions/19697846/how-to-convert-csv-file-to-multiline-json
-    cmd = "license_finder report --format={0} --save={1}".format( format_param, output_file)
+    cmd = "license_finder report --prepare --format={0} --save={1}".format( format_param, output_file)
     output = subprocess.check_output(['bash', '-lc', cmd], cwd=source_dir, stderr=subprocess.STDOUT)
     if not os.path.exists(output_file):
         raise Warning(output)
