@@ -1,27 +1,27 @@
 require 'test_helper'
 
 class Hooks::GitlabControllerTest < ActionDispatch::IntegrationTest
+  include ActiveJob::TestHelper
+
   test 'gitlab push hook' do
     # cf.: https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#push-events
     gitlab_body = {
       object_kind: 'push',
-      checkout_sha: '1bbc5189ff1a1a57a3ada6811b365f5b5b898250',
+      after: 'da1560886d4f094c3e6c9ef40349f7d38b5d27d7',
       repository: {
-        url: 'git@github.com:awesome-inc/neo4j-decorator.git',
-        git_http_url: 'https://github.com/awesome-inc/neo4j-decorator.git',
-        git_ssh_url: 'git@github.com:awesome-inc/neo4j-decorator.git',
+        git_http_url: 'http://example.com/mike/diaspora.git'
       }
     }.deep_stringify_keys
 
     body = {
       source_url: gitlab_body.dig('repository', 'git_http_url'),
-      commit_id: gitlab_body.dig('checkout_sha')
+      commit_id: gitlab_body.dig('after')
     }
-    stub_request(:post, 'http://license_finder:5000/').
-      with(body: body.to_json).
-      to_return(status: 200)
-
-    post_json hooks_gitlab_index_path, gitlab_body
-    assert_response 204
+    perform_enqueued_jobs do
+      stub_request(:post, 'http://license_finder:5000/').
+        with(body: body.to_json)
+      post_json hooks_gitlab_index_path, gitlab_body
+      assert_response 204
+    end
   end
 end
