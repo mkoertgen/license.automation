@@ -27,7 +27,18 @@ services:
     environment:
       <<: *proxy
     ports: [ '5000:5000' ]
-  
+
+  webhooks:
+    build:
+      context: ./webhooks
+      args:
+        <<: *proxy
+    environment:
+      <<: *proxy
+    ports: [ '3000:3000' ]
+    volumes:
+      - ./webhooks:/usr/src/app
+
   filebeat:
     image: docker.elastic.co/kibana/filebeat-oss:${ELK_VERSION}
     depends_on: [ elasticsearch ]
@@ -56,4 +67,3 @@ services:
       SERVER_NAME: kibana.docker.scancode
       ELASTICSEARCH_URL: http://elasticsearch:9200
       #KIBANA_DEFAULTAPPID: dashboard/Main_Dashboard
-    
