@@ -35,9 +35,11 @@ services:
         <<: *proxy
     environment:
       <<: *proxy
+      LICENSE_FINDER_URL: http://license_finder:5000
     ports: [ '3000:3000' ]
     volumes:
       - ./webhooks:/usr/src/app
+    depends_on: [ license_finder ]
 
   filebeat:
     image: docker.elastic.co/kibana/filebeat-oss:${ELK_VERSION}
