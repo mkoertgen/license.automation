@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   namespace :hooks do
     constraints format: :json do
-      resources :gitlab, only: %i[create]
-      resources :github, only: %i[create]
+      post 'gitlab'
+      post 'github'
     end
   end
 end

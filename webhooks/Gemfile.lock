@@ -152,7 +152,7 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4-java)
     unicode-display_width (1.4.0)
-    webmock (2.3.2)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -171,7 +171,7 @@ DEPENDENCIES
   rubocop
   simplecov
   tzinfo-data
-  webmock (~> 2.1)
+  webmock (~> 3.4.2)
 
 BUNDLED WITH
    1.16.2
