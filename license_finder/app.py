@@ -73,7 +73,8 @@ def git_fetch(source_url, commit):
     project_name = get_project_name(source_url)
     git_repo_dir = tempfile.mkdtemp(prefix=project_name, suffix="-" + commit)
     subprocess.check_call(['git', 'clone', source_url, git_repo_dir])
-    subprocess.check_call(['git', 'checkout', commit], cwd=git_repo_dir) if commit != 'HEAD'
+    if commit != 'HEAD':
+        subprocess.check_call(['git', 'checkout', commit], cwd=git_repo_dir)
     return git_repo_dir
 
 

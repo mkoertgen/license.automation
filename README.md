@@ -6,28 +6,29 @@ license detection tools wrapped into a REST service.
 **Tools:**
 
 - [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
-- [nexB/scancode-toolkit](https://github.com/nexB/scancode-toolkit)
 - ...
 
 ## Usage
 
-```console
-curl -X POST \
-  http://localhost:5000 \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "source_url": "https://github.com/awesome-inc/neo4j-decorator.git",
-  "commit_id": "012abe3"
-}'
-```
-
-**Request format:**
+Post directly to the license finder component:
 
 ```json
+POST http://localhost:5000
 {
   "source_url": "https://github.com/awesome-inc/neo4j-decorator.git",
-  "commit_id": "012abe3",
-  "format": "csv (default), json, html, markdown",
-  "install": "yarn (default), npm install, bundle install, nuget restore, ..."
+  "commit_id": "012abe3", // optional, default HEAD
+  "format": "csv (default), json, html, markdown"
+}
+```
+
+Or use a GitLab/GitHub webhook:
+
+```json
+POST http://localhost:3000/hooks/github
+{
+  "after": "012abe3",
+  "repository": {
+    "clone_url": "https://github.com/awesome-inc/neo4j-decorator.git"
+  }
 }
 ```
