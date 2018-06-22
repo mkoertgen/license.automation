@@ -1,2 +1,0 @@
-Flask==1.0.2
-scancode-toolkit==2.2.1
