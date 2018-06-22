@@ -6,7 +6,6 @@ x-proxy: &proxy
   no_proxy: ${no_proxy}
 
 volumes:
-  json_volume:
   es_volume:
 
 services:
@@ -18,6 +17,8 @@ services:
     environment:
       <<: *proxy
     ports: [ '5000:5000' ]
+    volumes:
+      - ./license_finder:/app
 
   webhooks:
     build:
@@ -27,15 +28,11 @@ services:
     environment:
       <<: *proxy
       LICENSE_FINDER_URL: http://license_finder:5000
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports: [ '3000:3000' ]
     volumes:
       - ./webhooks:/usr/src/app
-    depends_on: [ license_finder ]
-
-  filebeat:
-    image: docker.elastic.co/beats/filebeat-oss:${ELK_VERSION}
-    depends_on: [ elasticsearch ]
-    # TODO volumes for json & config
+    depends_on: [ license_finder, elasticsearch ]
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:${ELK_VERSION}

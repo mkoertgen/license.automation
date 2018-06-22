@@ -13,6 +13,7 @@ import tempfile
 
 CACHE_DIR = '/app/cache'
 DEFAULT_RESULT_FORMAT = 'csv' #'json'
+DEFAULT_COLUMNS = 'package_manager name version homepage licenses license_links'
 
 if not os.path.exists(CACHE_DIR):
     os.makedirs(CACHE_DIR)
@@ -39,12 +40,16 @@ def scan_project():
     if 'commit_id' in request_data:
       commit_id = request_data['commit_id']
 
-    format_param = DEFAULT_RESULT_FORMAT
+    report_fmt = DEFAULT_RESULT_FORMAT
     if 'format' in request_data:
-        format_param = request_data['format']
+        report_fmt = request_data['format']
+
+    columns = DEFAULT_COLUMNS
+    if 'columns' in request_data:
+        columns = request_data['columns']
 
     license_info_filename = CACHE_DIR + '/' + get_project_name(source_url) + "-" + commit_id \
-                            + "." + format_param
+                            + "." + report_fmt
     if not os.path.exists(license_info_filename):
         dir = git_fetch(source_url, commit_id)
 
@@ -52,7 +57,7 @@ def scan_project():
           #print(request_data['pre_tasks'], file=sys.stderr)
           subprocess.check_call(request_data['pre_tasks'], cwd=dir)
 
-        find_licenses(dir, license_info_filename, format_param)
+        find_licenses(dir, license_info_filename, report_fmt, columns)
 
         # TODO: save json report for filebeat (requires format: csv/json)
 
@@ -61,7 +66,7 @@ def scan_project():
     with open(license_info_filename, "r") as license_info_file:
         license_info = license_info_file.readlines()
 
-    mimetype = "application/{0}".format(format_param)
+    mimetype = "application/{0}".format(report_fmt)
     return Response(license_info, mimetype=mimetype)
 
 
@@ -85,9 +90,10 @@ def get_project_name(source_url):
     return project_name
 
 
-def find_licenses(source_dir, output_file, format_param):
+def find_licenses(source_dir, output_file, report_fmt, columns):
+    other_args = '--prepare-no-fail'
     # csv 2 json? https://stackoverflow.com/questions/19697846/how-to-convert-csv-file-to-multiline-json
-    cmd = "license_finder report --prepare --format={0} --save={1}".format( format_param, output_file)
+    cmd = "license_finder report {3} --format={0} --save={1} --columns={2}".format( report_fmt, output_file, columns, other_args)
     output = subprocess.check_output(['bash', '-lc', cmd], cwd=source_dir, stderr=subprocess.STDOUT)
     if not os.path.exists(output_file):
         raise Warning(output)
