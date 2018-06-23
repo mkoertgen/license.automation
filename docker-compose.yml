@@ -17,8 +17,16 @@ services:
     environment:
       <<: *proxy
     ports: [ '5000:5000' ]
+    environment:
+      GUNICORN_CMD_ARGS: '--bind 0.0.0.0:5000 -w 4'
+      LICENSE_CACHE_DIR: '/app/cache'
+      LICENSE_FORMAT: 'csv'
+      LICENSE_COLUMNS: 'package_manager name version homepage licenses license_links'
+      LICENSE_DEBUG: 'true'
     volumes:
       - ./license_finder:/app
+    command: 'python app.py'
+
 
   webhooks:
     build:

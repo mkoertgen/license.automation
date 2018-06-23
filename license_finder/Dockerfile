@@ -15,4 +15,5 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 EXPOSE 5000
-CMD [ "python", "app.py" ]
+ENV GUNICORN_CMD_ARGS "--bind 0.0.0.0:5000 -w 4"
+CMD [ "gunicorn", "app:app" ]
