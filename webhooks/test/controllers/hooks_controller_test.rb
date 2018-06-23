@@ -43,7 +43,7 @@ class HooksControllerTest < ActionDispatch::IntegrationTest
   def assert_job_hook(path, hook_json, job_body)
     perform_enqueued_jobs do
       stub_request(:post, LicenseFinderJob::LICENSE_FINDER_URL)
-        .with(body: job_body.to_json)
+        .with(body: hash_including(job_body))
       post_json path, hook_json
       assert_response 204
     end
