@@ -1,18 +1,20 @@
-# webhook controller
+# WebHook controller
 class HooksController < ApplicationController
   def github
-    body = {
-      source_url: params.dig('repository', 'clone_url'),
-      commit_id: params.dig('after')
-    }
-    LicenseFinderJob.perform_later body
+    LicenseFinderJob.perform_later body('clone_url')
   end
 
   def gitlab
-    body = {
-      source_url: params.dig('repository', 'git_http_url'),
-      commit_id: params.dig('after')
+    LicenseFinderJob.perform_later body('git_http_url')
+  end
+
+  private
+
+  def body(url_key)
+    url = params.require(:repository).require(url_key) # URI.parse
+    {
+        source_url: url,
+        commit_id: params.require(:after)
     }
-    LicenseFinderJob.perform_later body
   end
 end
