@@ -26,4 +26,10 @@ class LicenseFinderJob < ApplicationJob
     #
     #     HTTP.post(   /_bulk, ...)
   end
+
+  private
+
+  def post
+
+  end
 end
