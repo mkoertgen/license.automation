@@ -44,6 +44,9 @@ class HooksControllerTest < ActionDispatch::IntegrationTest
     perform_enqueued_jobs do
       stub_request(:post, LicenseFinderJob::LICENSE_FINDER_URL)
         .with(body: hash_including(job_body))
+        #.to_return 'some licenses csv'
+      stub_request(:post, "#{LicenseFinderJob::ELASTIC_SEARCH_URL}/_bulk")
+        #.with_body # 'some licenses json'
       post_json path, hook_json
       assert_response 204
     end
