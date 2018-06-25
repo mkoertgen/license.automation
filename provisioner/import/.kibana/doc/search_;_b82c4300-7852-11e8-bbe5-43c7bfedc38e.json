@@ -1,0 +1,27 @@
+{
+  "type": "search",
+  "updated_at": "2018-06-25T10:29:22.221Z",
+  "search": {
+    "title": "Packages-Search",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "name",
+      "version",
+      "homepage",
+      "license.name",
+      "license.url",
+      "repository.owner",
+      "repository.name",
+      "repository.url"
+    ],
+    "sort": [
+      "timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"3935eb50-784d-11e8-bbe5-43c7bfedc38e\",\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[]}"
+    }
+  }
+}

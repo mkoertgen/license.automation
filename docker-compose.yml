@@ -1,5 +1,14 @@
 version: '3.4'
 
+x-base: &base
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "5"
+  # https://docs.docker.com/compose/compose-file/#restart
+  restart: ${DOCKER_RESTART:-unless-stopped}
+
 x-proxy: &proxy
   http_proxy: ${http_proxy}
   https_proxy: ${https_proxy}
@@ -10,25 +19,26 @@ volumes:
 
 services:
   license_finder:
+    <<: *base
     build:
       context: ./license_finder
       args:
         <<: *proxy
-    environment:
-      <<: *proxy
     ports: [ '5000:5000' ]
     environment:
+      <<: *proxy
       GUNICORN_CMD_ARGS: '--bind 0.0.0.0:5000 -w 4'
       LICENSE_CACHE_DIR: '/app/cache'
       LICENSE_FORMAT: 'csv'
       LICENSE_COLUMNS: 'package_manager name version homepage licenses license_links'
+      LICENSE_ARGS: '-r --prepare-no-fail'
       LICENSE_DEBUG: 'true'
     volumes:
       - ./license_finder:/app
     command: 'python app.py'
 
-
   webhooks:
+    <<: *base
     build:
       context: ./webhooks
       args:
@@ -43,6 +53,7 @@ services:
     depends_on: [ license_finder, elasticsearch ]
 
   elasticsearch:
+    <<: *base
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:${ELK_VERSION}
     ports: [ '9200:9200', '9300:9300' ]
     volumes:
@@ -57,6 +68,7 @@ services:
       discovery.type: single-node
 
   kibana:
+    <<: *base
     image: docker.elastic.co/kibana/kibana-oss:${ELK_VERSION}
     ports: [ '5601:5601' ]
     depends_on: [ elasticsearch ]
@@ -64,4 +76,15 @@ services:
       # cf.: https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
       SERVER_NAME: kibana.licenses
       ELASTICSEARCH_URL: http://elasticsearch:9200
-      #KIBANA_DEFAULTAPPID: dashboard/Main_Dashboard
+      KIBANA_DEFAULTAPPID: dashboard/4d90cbb0-784d-11e8-bbe5-43c7bfedc38e
+      DEFAULTINDEX: 3935eb50-784d-11e8-bbe5-43c7bfedc38e
+
+  provisioner:
+    <<: *base
+    image: awesomeinc/elastic_provisioner:0.1.1
+    volumes:
+      - ./provisioner/import/:/app/import/
+      - ./provisioner/export/:/app/export/
+    environment:
+      ES_BASE_URI: http://elasticsearch:9200
+    depends_on: [ elasticsearch ]

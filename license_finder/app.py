@@ -10,6 +10,7 @@ LICENSE_CACHE_DIR = os.getenv('LICENSE_CACHE_DIR', '/app/cache')
 LICENSE_FORMAT = os.getenv('LICENSE_FORMAT', 'csv')
 LICENSE_COLUMNS = os.getenv('LICENSE_COLUMNS', 'package_manager name version homepage licenses license_links')
 LICENSE_DEBUG = os.getenv('LICENSE_DEBUG', 'false') == 'true'
+LICENSE_ARGS = os.getenv('LICENSE_ARGS', '-r --prepare-no-fail')
 
 if not os.path.exists(LICENSE_CACHE_DIR):
     os.makedirs(LICENSE_CACHE_DIR)
@@ -76,7 +77,7 @@ def get_project_name(source_url):
 
 def find_licenses(source_dir, output_file, report_fmt, columns):
     COMMAND = "license_finder report {3} --format={0} --save={1} --columns={2}"
-    other_args = '--prepare-no-fail'
+    other_args = LICENSE_ARGS
     args = COMMAND.format(report_fmt, output_file, columns, other_args)
     result = call(['bash', '-lc', args], source_dir)
     if not os.path.exists(output_file):

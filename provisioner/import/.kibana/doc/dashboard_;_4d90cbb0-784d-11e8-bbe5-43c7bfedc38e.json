@@ -1,0 +1,16 @@
+{
+  "type": "dashboard",
+  "updated_at": "2018-06-25T10:29:56.352Z",
+  "dashboard": {
+    "title": "Packages",
+    "hits": 0,
+    "description": "Main dashboard for package licensing",
+    "panelsJSON": "[{\"embeddableConfig\":{\"vis\":{\"legendOpen\":false}},\"gridData\":{\"h\":14,\"i\":\"1\",\"w\":15,\"x\":0,\"y\":7},\"id\":\"a4960470-784d-11e8-bbe5-43c7bfedc38e\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":7,\"i\":\"2\",\"w\":20,\"x\":0,\"y\":0},\"id\":\"1b368460-784e-11e8-bbe5-43c7bfedc38e\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":7,\"i\":\"3\",\"w\":28,\"x\":20,\"y\":0},\"id\":\"37371140-7851-11e8-bbe5-43c7bfedc38e\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"version\":\"6.3.0\"},{\"embeddableConfig\":{},\"gridData\":{\"h\":19,\"i\":\"4\",\"w\":33,\"x\":15,\"y\":7},\"id\":\"b82c4300-7852-11e8-bbe5-43c7bfedc38e\",\"panelIndex\":\"4\",\"type\":\"search\",\"version\":\"6.3.0\"}]",
+    "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+    "version": 1,
+    "timeRestore": false,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+    }
+  }
+}
