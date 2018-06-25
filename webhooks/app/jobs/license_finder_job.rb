@@ -4,9 +4,9 @@ require 'csv'
 class LicenseFinderJob < ApplicationJob
   queue_as :default
 
-  LICENSE_FINDER_URL = ENV.fetch('LICENSE_FINDER_URL') {'http://localhost:5000'}.freeze
+  LICENSE_FINDER_URL = ENV.fetch('LICENSE_FINDER_URL') { 'http://localhost:5000' }.freeze
   COLUMNS = %w[package_manager name version homepage licenses license_links]
-  ELASTIC_SEARCH_URL = ENV.fetch('ELASTIC_SEARCH_URL') {'http://localhost:9200'}.freeze
+  ELASTIC_SEARCH_URL = ENV.fetch('ELASTIC_SEARCH_URL') { 'http://localhost:9200' }.freeze
 
   def perform(body)
     request = body.merge(format: 'csv', columns: COLUMNS)
@@ -14,7 +14,7 @@ class LicenseFinderJob < ApplicationJob
     body = bulk_for meta(request), response.to_s
     checked do
       HTTP.headers(content_type: 'application/x-ndjson')
-          .post("#{ELASTIC_SEARCH_URL}/_bulk", body: body)
+        .post("#{ELASTIC_SEARCH_URL}/_bulk", body: body)
     end
   end
 
@@ -33,26 +33,27 @@ class LicenseFinderJob < ApplicationJob
     CSV.parse(csv) do |row|
       id = SecureRandom.uuid
       type, name, version, homepage, license, license_url = row
-      header = { index: { _index: index, _type: type, _id: id} }
+      header = { index: { _index: index, _type: type, _id: id } }
       bulk << header.to_json
-      doc = meta.merge({
-          name: name,
-          version: version,
-          homepage: homepage,
-          license: { name: license, url: license_url }
-      })
+      doc = {
+        name: name,
+        version: version,
+        homepage: homepage,
+        license: { name: license, url: license_url }
+      }
+      doc = meta.merge doc
       bulk << doc.to_json
     end
     bulk.join("\n") + "\n"
   end
 
   def meta(request)
+    url = URI(request[:source_url])
+    _p, owner, name = url.path.split('/', 3)
+    name.chomp!('.git')
     {
-        timestamp: Time.now.utc.iso8601,
-        repository: {
-            url: request[:source_url]
-            # TODO: more here?
-        }
+      timestamp: Time.now.utc.iso8601,
+      repository: { url: url.to_s, owner: owner, name: name }
     }
   end
 end
