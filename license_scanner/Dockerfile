@@ -22,5 +22,5 @@ COPY . ./
 RUN bash -lc 'rake test'
 
 EXPOSE 3000
-CMD bash -lc 'rails s' ]
+CMD bash -lc 'rm -f ./tmp/pids/server.pid && rails s'
 
