@@ -14,17 +14,6 @@ x-proxy: &proxy
   https_proxy: ${https_proxy}
   no_proxy: ${no_proxy}
 
-x-provisioner: &provisioner
-  <<: *base
-  image: taskrabbit/elasticsearch-dump:v3.3.18
-  depends_on: [ elasticsearch ]
-  environment:
-    ES_URL: http://elasticsearch:9200
-  volumes:
-    - ./provisioner/:/data/
-  entrypoint: /bin/sh
-  working_dir: /data
-
 volumes:
   es_volume:
 
@@ -70,9 +59,14 @@ services:
       ELASTICSEARCH_URL: http://elasticsearch:9200
       KIBANA_DEFAULTAPPID: dashboard/4d90cbb0-784d-11e8-bbe5-43c7bfedc38e
 
-  export:
-    <<: *provisioner
-    #command: ./export.sh
-  import:
-    <<: *provisioner
+  provisioner:
+    <<: *base
+    image: taskrabbit/elasticsearch-dump:v3.3.18
+    depends_on: [ elasticsearch ]
+    environment:
+      ES_URL: http://elasticsearch:9200
+    volumes:
+      - ./provisioner/:/data/
+    entrypoint: /bin/sh
+    working_dir: /data
     command: ./import.sh
