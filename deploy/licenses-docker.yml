@@ -1,17 +1,16 @@
 ---
-- name: "Deploy license dashboard"
+- name: "Deploy license automation"
   hosts: licenses
-  become: true
-  serial: 1
   gather_facts: no
   vars:
     project_name: "licenses"
+    # TODO: automated docker build
     license_scanner_image: "awesomeinc/license_scanner"
   tasks:
     - name: "Deploy docker service"
+      register: output
       docker_service:
         project_name: "{{ project_name }}"
-
         #state: present
         #build: no
         pull: yes # latest!
@@ -19,35 +18,38 @@
         #dependencies: yes
         #restarted: no
         #stopped: no
-
         version: '3'
+        volumes:
+          es_volume:
         services:
           license_scanner:
             image: "{{ license_scanner_image }}"
             ports: [ '3000:3000' ]
             depends_on: [ elasticsearch ]
+            environment:
+              # TODO: proxy?
+              ELASTIC_SEARCH_URL: http://elasticsearch:9200
           elasticsearch:
             image: docker.elastic.co/elasticsearch/elasticsearch-oss:{{ elk_version }}
             ports: [ '9200:9200', '9300:9300' ]
-          volumes: [ 'es_volume:/usr/share/elasticsearch/data' ]
+            volumes: [ 'es_volume:/usr/share/elasticsearch/data' ]
           environment: # cf.: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-configuration-methods
             ES_JAVA_OPTS: "-Xms1g -Xmx1g"
             network.host: 0.0.0.0
             node.max_local_storage_nodes: 1
             cluster.name: elastic.licenses
-            bootstrap.memory_lock: 'true'
+            #bootstrap.memory_lock: 'true'
             discovery.type: single-node
           kibana:
             image: docker.elastic.co/kibana/kibana-oss:{{ elk_version }}
-          ports: [ '5601:5601' ]
-          depends_on: [ elasticsearch ]
-          environment: # cf.: https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
-            SERVER_NAME: kibana.licenses
-            ELASTICSEARCH_URL: http://elasticsearch:9200
-      register: output
-
+            ports: [ '5601:5601' ]
+            depends_on: [ elasticsearch ]
+            environment: # cf.: https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
+              SERVER_NAME: kibana.licenses
+              ELASTICSEARCH_URL: http://elasticsearch:9200
+              KIBANA_DEFAULTAPPID: dashboard/4d90cbb0-784d-11e8-bbe5-43c7bfedc38e
+          # TODO: provisioner?
     - debug:
         var: output
-
     - assert: { that: "{{ item }}.{{ project_name }}_{{ item }}_1.state.running" }
       with_items: [ license_scanner, elasticsearch, kibana ]
