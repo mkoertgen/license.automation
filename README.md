@@ -1,30 +1,33 @@
 # license.automation
 
-Automated license scanning & dashboards for git repositories using already available
-license detection tools wrapped into a REST service.
+Automated license scanning for git repositories using
 
-**Tools:**
-
-- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
-- ...
+- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder) wrapped into REST and
+- [ELK Stack](https://www.elastic.co/elk-stack) for dashboard visualization of the analyzed dependencies.
 
 ## Usage
 
-Post directly to the license finder component:
+Start using
+
+```console
+docker-compose up
+```
+
+Next, scan a project
 
 ```json
-POST http://localhost:5000
+POST http://localhost:3000/api/scan
 {
-  "source_url": "https://github.com/awesome-inc/neo4j-decorator.git",
+  "url": "https://github.com/awesome-inc/neo4j-decorator.git",
   "commit_id": "012abe3", // optional, default HEAD
   "format": "csv (default), json, html, markdown"
 }
 ```
 
-Or use a GitLab/GitHub webhook:
+Or use a GitLab/GitHub webhook
 
 ```json
-POST http://localhost:3000/hooks/github
+POST http://localhost:3000/api/github
 {
   "after": "012abe3",
   "repository": {

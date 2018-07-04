@@ -13,12 +13,7 @@ class ApiControllerTest < ActionDispatch::IntegrationTest
       }
     }.deep_stringify_keys
 
-    job_body = {
-      source_url: hook_json.dig('repository', 'clone_url'),
-      commit_id: hook_json.dig('after')
-    }
-
-    assert_job_hook api_github_path, hook_json, job_body
+    assert_job_hook api_github_path, hook_json
   end
 
   test 'gitlab push hook' do
@@ -31,25 +26,28 @@ class ApiControllerTest < ActionDispatch::IntegrationTest
       }
     }.deep_stringify_keys
 
-    job_body = {
-      source_url: hook_json.dig('repository', 'git_http_url'),
-      commit_id: hook_json.dig('after')
-    }
-
-    assert_job_hook api_gitlab_path, hook_json, job_body
+    assert_job_hook api_gitlab_path, hook_json
   end
 
   private
 
-  def assert_job_hook(path, hook_json, job_body)
+  def assert_job_hook(path, hook_json)
+    csv = <<-EOF
+Yarn,a-sync-waterfall,1.0.0,https://github.com/hydiak/a-sync-waterfall,MIT,http://opensource.org/licenses/mit-license
+Yarn,abbrev,1.1.1,Unknown,ISC,http://en.wikipedia.org/wiki/ISC_license
+EOF
     perform_enqueued_jobs do
-      stub_request(:post, LicenseFinderJob::LICENSE_FINDER_URL)
-        .with(body: hash_including(job_body))
-        #.to_return 'some licenses csv'
-      stub_request(:post, "#{LicenseFinderJob::ELASTIC_SEARCH_URL}/_bulk")
+      Scanner.stub :call, csv do
+        stub_request(:post, "#{LicenseFinderJob::ELASTIC_SEARCH_URL}/_bulk")
         #.with_body # 'some licenses json'
-      post_json path, hook_json
-      assert_response 204
+        post_json path, hook_json
+        assert_response 204
+      end
     end
+  end
+
+  # cf.: https://gist.github.com/dteoh/2d4c115446e2429824b6945c45c07f3b
+  def post_json(path, obj)
+    post path, params: obj.to_json, headers: { 'Content-Type' => 'application/json' }
   end
 end

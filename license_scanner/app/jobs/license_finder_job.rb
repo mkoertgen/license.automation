@@ -4,26 +4,25 @@ require 'csv'
 class LicenseFinderJob < ApplicationJob
   queue_as :default
 
-  LICENSE_FINDER_URL = ENV.fetch('LICENSE_FINDER_URL') { 'http://localhost:5000' }.freeze
-  COLUMNS = %w[package_manager name version homepage licenses license_links]
   ELASTIC_SEARCH_URL = ENV.fetch('ELASTIC_SEARCH_URL') { 'http://localhost:9200' }.freeze
 
-  def perform(body)
-    request = body.merge(format: 'csv', columns: COLUMNS)
-    response = checked { HTTP.post(LICENSE_FINDER_URL, json: request) }
-    body = bulk_for meta(request), response.to_s
+  def perform(request)
+    url = request[:url]
+    commit = request[:commit]
+    csv = Scanner.call(url, commit)
+    body = bulk_for meta(request), csv
     checked do
       HTTP.headers(content_type: 'application/x-ndjson')
-        .post("#{ELASTIC_SEARCH_URL}/_bulk", body: body)
+          .post("#{ELASTIC_SEARCH_URL}/_bulk", body: body)
     end
   end
 
   private
 
   def checked
-    response = yield
-    raise HTTP::ResponseError, "#{response.uri}: #{response}" unless response.status.success?
-    response
+    r = yield
+    raise HTTP::ResponseError, "#{r.uri}: #{r}" unless r.status.success?
+    r
   end
 
   def bulk_for(meta, csv)
@@ -48,7 +47,7 @@ class LicenseFinderJob < ApplicationJob
   end
 
   def meta(request)
-    url = URI(request[:source_url])
+    url = URI(request[:url])
     _p, owner, name = url.path.split('/', 3)
     name.chomp!('.git')
     {

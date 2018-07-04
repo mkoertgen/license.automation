@@ -26,14 +26,11 @@ services:
         <<: *proxy
     environment:
       <<: *proxy
-      LICENSE_CACHE_DIR: '/var/license_scanner/cache'
-      LICENSE_FORMAT: 'csv'
-      LICENSE_COLUMNS: 'package_manager name version homepage licenses license_links'
-      LICENSE_ARGS: '-r --prepare-no-fail'
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTIC_SEARCH_URL: http://elasticsearch:9200
     ports: [ '3000:3000' ]
     volumes:
-      - ./license_scanner:/usr/src/app
+      - ./license_scanner:/usr/share/license_scanner
+      - ./license_scanner/tmp/scan/cache:/tmp/license_scanner/cache
     depends_on: [ elasticsearch ]
 
   elasticsearch:
@@ -63,12 +60,12 @@ services:
       KIBANA_DEFAULTAPPID: dashboard/4d90cbb0-784d-11e8-bbe5-43c7bfedc38e
       DEFAULTINDEX: 3935eb50-784d-11e8-bbe5-43c7bfedc38e
 
-  provisioner:
-    <<: *base
-    image: awesomeinc/elastic_provisioner:0.1.1
-    volumes:
-      - ./provisioner/import/:/app/import/
-      - ./provisioner/export/:/app/export/
-    environment:
-      ES_BASE_URI: http://elasticsearch:9200
-    depends_on: [ elasticsearch ]
+  # provisioner:
+  #   <<: *base
+  #   image: awesomeinc/elastic_provisioner:0.1.1
+  #   volumes:
+  #     - ./provisioner/import/:/app/import/
+  #     - ./provisioner/export/:/app/export/
+  #   environment:
+  #     ES_BASE_URI: http://elasticsearch:9200
+  #   depends_on: [ elasticsearch ]

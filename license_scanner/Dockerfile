@@ -11,6 +11,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
   curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe &&\
   echo "alias nuget=\"mono /usr/local/bin/nuget.exe\"" >> ~/.bash_aliases
 
+ENV LICENSE_CACHE_DIR  '/tmp/license_scanner/cache'
+
 RUN mkdir -p /usr/share/license_scanner
 WORKDIR /usr/share/license_scanner
 COPY Gemfile* ./
