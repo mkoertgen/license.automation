@@ -1,5 +1,5 @@
-# WebHook controller
-class HooksController < ApplicationController
+# Api controller
+class ApiController < ApplicationController
   def github
     LicenseFinderJob.perform_later body('clone_url')
   end

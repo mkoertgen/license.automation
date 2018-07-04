@@ -18,39 +18,23 @@ volumes:
   es_volume:
 
 services:
-  license_finder:
+  license_scanner:
     <<: *base
     build:
-      context: ./license_finder
+      context: ./license_scanner
       args:
         <<: *proxy
-    ports: [ '5000:5000' ]
     environment:
       <<: *proxy
-      GUNICORN_CMD_ARGS: '--bind 0.0.0.0:5000 -w 4'
-      LICENSE_CACHE_DIR: '/app/cache'
+      LICENSE_CACHE_DIR: '/var/license_scanner/cache'
       LICENSE_FORMAT: 'csv'
       LICENSE_COLUMNS: 'package_manager name version homepage licenses license_links'
       LICENSE_ARGS: '-r --prepare-no-fail'
-      LICENSE_DEBUG: 'true'
-    volumes:
-      - ./license_finder:/app
-    command: 'python app.py'
-
-  webhooks:
-    <<: *base
-    build:
-      context: ./webhooks
-      args:
-        <<: *proxy
-    environment:
-      <<: *proxy
-      LICENSE_FINDER_URL: http://license_finder:5000
       ELASTICSEARCH_URL: http://elasticsearch:9200
     ports: [ '3000:3000' ]
     volumes:
-      - ./webhooks:/usr/src/app
-    depends_on: [ license_finder, elasticsearch ]
+      - ./license_scanner:/usr/src/app
+    depends_on: [ elasticsearch ]
 
   elasticsearch:
     <<: *base

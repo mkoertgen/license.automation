@@ -1,3 +1,0 @@
-[submodule ".monorepo.gitlab"]
-	path = .monorepo.gitlab
-	url = https://github.com/awesome-inc/monorepo.gitlab.git

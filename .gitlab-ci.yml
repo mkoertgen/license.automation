@@ -1,29 +1,5 @@
-# needs `curl`, `jq` 1.5 and `${PRIVATE_TOKEN}, cf.:
-# - https://docs.gitlab.com/ee/api/#personal-access-tokens
-# - https://docs.gitlab.com/ce/ci/variables/README.html#secret-variables
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-  CI_SERVER_URL: https://gitlab.com
-before_script:
-    - .monorepo.gitlab/last_green_commit.sh
-
 stages:
-  - build
   - deploy
-
-# Use yml anchors, to keep jobs DRY, cf.: https://docs.gitlab.com/ee/ci/yaml/#anchors
-.build_template: &build_definition
-  tags:
-    - linux
-    - docker
-  stage: build
-  script: .monorepo.gitlab/build_if_changed.sh ${CI_JOB_NAME} ./build.sh ${CI_JOB_NAME}
-
-license_finder:
-  <<: *build_definition
-
-webhooks:
-  <<: *build_definition
 
 docker-deploy:
   tags:

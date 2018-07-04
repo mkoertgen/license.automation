@@ -6,6 +6,7 @@
   gather_facts: no
   vars:
     project_name: "licenses"
+    license_scanner_image: "awesomeinc/license_scanner"
   tasks:
     - name: "Deploy docker service"
       docker_service:
@@ -21,13 +22,10 @@
 
         version: '3'
         services:
-          scanner:
-            image: "{{ license_finder_image }}"
-            ports: [ '5000:5000' ]
-          hooks:
-            image: "{{ license_hooks_image }}"
+          license_scanner:
+            image: "{{ license_scanner_image }}"
             ports: [ '3000:3000' ]
-            depends_on: [ scanner, elasticsearch ]
+            depends_on: [ elasticsearch ]
           elasticsearch:
             image: docker.elastic.co/elasticsearch/elasticsearch-oss:{{ elk_version }}
             ports: [ '9200:9200', '9300:9300' ]
@@ -52,4 +50,4 @@
         var: output
 
     - assert: { that: "{{ item }}.{{ project_name }}_{{ item }}_1.state.running" }
-      with_items: [ scanner, hooks, elasticsearch, kibana ]
+      with_items: [ license_scanner, elasticsearch, kibana ]

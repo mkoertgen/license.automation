@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class HooksControllerTest < ActionDispatch::IntegrationTest
+# Api controller tests
+class ApiControllerTest < ActionDispatch::IntegrationTest
   include ActiveJob::TestHelper
 
   test 'github push hook' do
@@ -17,7 +18,7 @@ class HooksControllerTest < ActionDispatch::IntegrationTest
       commit_id: hook_json.dig('after')
     }
 
-    assert_job_hook hooks_github_path, hook_json, job_body
+    assert_job_hook api_github_path, hook_json, job_body
   end
 
   test 'gitlab push hook' do
@@ -35,7 +36,7 @@ class HooksControllerTest < ActionDispatch::IntegrationTest
       commit_id: hook_json.dig('after')
     }
 
-    assert_job_hook hooks_gitlab_path, hook_json, job_body
+    assert_job_hook api_gitlab_path, hook_json, job_body
   end
 
   private
