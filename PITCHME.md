@@ -32,16 +32,15 @@
 
 ---
 
-### Options for Managing Open Source Licensing
+### Managing Open Source Licensing
 
-- Do nothing |
-- ![](https://i.imgflip.com/fhore.jpg)
+![Do nothing](https://i.pinimg.com/originals/f5/1c/a6/f51ca6de2e25b45ed354710a5d6afc07.jpg)
 
 ---
 
-### Options for Managing Open Source Licensing
+### Managing Open Source Licensing
 
-- Do nothing
+- Do nothing |
 - Developer training and project planning |
 - Post-development license analysis and correction |
 - Periodic assessment |
