@@ -1,3 +1,5 @@
+[![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/mkoertgen/license.automation/master)
+
 # license.automation
 
 Automated license scanning for git repositories using
