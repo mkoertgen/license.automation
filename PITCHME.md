@@ -10,6 +10,12 @@
 
 ---
 
+### Are we legal?
+
+![I need a tracker](http://m.memegen.com/hnrsmk.jpg)
+
+---
+
 ### [The Cost of Open Source Licensing Compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance)
 
 > Proper licensing and copyright compliance, implemented
@@ -19,11 +25,24 @@
 
 ---
 
+### Some Terminology
+
+- [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools)
+- [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis)
+
+---
+
 ### Options for Managing Open Source Licensing
 
 - Do nothing |
+- ![](https://i.imgflip.com/fhore.jpg)
+
+---
+
+### Options for Managing Open Source Licensing
+
+- Do nothing
 - Developer training and project planning |
-- Custom CSS Styling |
 - Post-development license analysis and correction |
 - Periodic assessment |
 - Real-time preventive assistance at the developer workstation |
@@ -39,6 +58,43 @@ Note:
 - Periodic assessment: licensing analysis during development allows for corrections along the way if license violations are detected. This type of analysis can be automated and tends to be less expensive than post-development assessment since changes and re-tests are always easier to undertake earlier rather than later in the cycle.
 
 - Real-time preventive assistance at the developer workstation: the most pro-active way of ensuring license compliance detects violations immediately and automatically at the developer workstation in real-time. The development process is not disturbed, and the cost of corrections is minimized, as any necessary corrections are done immediately without calling on external resources or requiring re-testing. The process can be automated using unobtrusive software tools that do not require developers to be trained in legal compliance. Managing licenses in real-time is generally the most cost efficient and lowest risk option.
+
+---
+
+### Types of Software Components
+
+- Source Code |
+- Dependencies |
+- Services, Docker images, ...
+
+---
+
+### Deep Code Scanning
+
+**Example:** Scan for license notice, similar code (active research)
+
+```c++
+This file is part of Foobar.
+
+Foobar is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+...
+```
+
+---
+
+### Some Code Scanners
+
+- [nexB/scancode-toolkit](https://github.com/nexB/scancode-toolkit)
+- [AboutCode.Org](https://www.aboutcode.org/)
+- [Ninka](http://ninka.turingmachine.org/)
+
+---
+
+### Dependency Scanning
+
+- [FOSSA](https://fossa.io/)
+- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
 
 ---
 
