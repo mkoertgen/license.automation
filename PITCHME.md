@@ -6,7 +6,7 @@
 
 ### Are we legal?
 
-![How to keep track](https://imgflip.com/i/2di4ns)
+![How to keep track](https://memegen.link/noidea/how_to_keep_track../...of_all_my_dependencies~q.jpg?watermark=none)
 
 ---
 
