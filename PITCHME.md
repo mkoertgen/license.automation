@@ -27,8 +27,8 @@
 
 ### Some Terminology
 
-- [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools) |
-- [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis) |
+- [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools)
+- [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis)
 
 ---
 
@@ -74,8 +74,8 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Dependency Scanning
 
-- [FOSSA](https://fossa.io/) |
-- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder) |
+- [FOSSA](https://fossa.io/)
+- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
 
 ---
 
@@ -98,8 +98,6 @@ it under the terms of the GNU General Public License as published by the Free So
 - Ignoring licensing compliance can be costly, and it is difficult to put an upper limit on the cost of shipping non-compliant software.
 
 - Corrective analysis, using automated tools at regular intervals and during QA reduces the overall cost significantly.
-
-- Combining real-time IP management at the developer's desktop with scanning at QA or build-time reduces the cost of potential non-compliance significantly.
 
 ---
 
