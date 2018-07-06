@@ -1,138 +1,45 @@
 @title[Introduction]
 
-# license.automation
-
 ### Automated License Complicance Analysis
 
 ---
 
-### Do we know it's legal to deliver our product?
+### Are we legal?
 
-![Absolutely not](https://media.giphy.com/media/n5sdh00OGVpgA/giphy.gif)
+![How to keep track](https://imgflip.com/i/2di4ns)
 
 ---
 
-## The Cost of Open Source Licensing Compliance
+### [The Cost of Open Source Licensing Compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance)
 
 > Proper licensing and copyright compliance, implemented
 > as part of the normal QA process, can yield savings of
 > between and 40% and 65%, relative to the potential costs
 > of non-compliance.
-> <br>
-
-@fa[arrows gp-tip](Press F to go Fullscreen)
-
-@fa[microphone gp-tip](Press S for Speaker Notes)
 
 ---
 
-## Template Features
+### Options for Managing Open Source Licensing
 
-- Code Presenting |
-- Repo Source, Static Blocks, GIST |
+- Do nothing |
+- Developer training and project planning |
 - Custom CSS Styling |
-- Slideshow Background Images |
-- Background Image Scaling |
-- Custom Logo, TOC, and Footnotes |
+- Post-development license analysis and correction |
+- Periodic assessment |
+- Real-time preventive assistance at the developer workstation |
 
----?code=sample/go/server.go&lang=golang&title=Golang File
+Note:
 
-@[1,3-6](Present code found within any repo source file.)
-@[8-18](Without ever leaving your slideshow.)
-@[19-28](Using GitPitch code-presenting with (optional) annotations.)
+- Do nothing: popular until recently, this option ignores the compliance issue because it carries the lowest up-front cost, but imposes the highest business risks and largest corrective costs as a product moves closer to launch.
 
----
+- Developer training and project planning: many companies consider proper training and project planning sufficient in most cases, but it also carries increasing risk because of broadening software license diversity and the cost of developer training. Compliance depends solely on developers and there is consequently no reliable assurance of legal compliance before going to market.
 
-@title[JavaScript Block]
+- Post-development license analysis and correction: action taken late in the development cycle can take the form of external or internal audits, and impacts the final stages of testing and quality process. This option does not impact the development workflow and can be automated with software tools designed for this purpose. However, if license violations are discovered, this will prolong the project lifecycle and increase development cost.
 
-<p><span class="slide-title">JavaScript Block</span></p>
+- Periodic assessment: licensing analysis during development allows for corrections along the way if license violations are detected. This type of analysis can be automated and tends to be less expensive than post-development assessment since changes and re-tests are always easier to undertake earlier rather than later in the cycle.
 
-```javascript
-// Include http module.
-var http = require("http");
-
-// Create the server. Function passed as parameter
-// is called on every request made.
-http
-  .createServer(function(request, response) {
-    // Attach listener on end event.  This event is
-    // called when client sent, awaiting response.
-    request.on("end", function() {
-      // Write headers to the response.
-      // HTTP 200 status, Content-Type text/plain.
-      response.writeHead(200, {
-        "Content-Type": "text/plain"
-      });
-      // Send data and end response.
-      response.end("Hello HTTP!");
-    });
-
-    // Listen on the 8080 port.
-  })
-  .listen(8080);
-```
-
-@[1,2](You can present code inlined within your slide markdown too.)
-@[9-17](Displayed using code-syntax highlighting just like your IDE.)
-@[19-20](Again, all of this without ever leaving your slideshow.)
-
----?gist=onetapbeyond/494e0fecaf0d6a2aa2acadfb8eb9d6e8&lang=scala&title=Scala GIST
-
-@[23](You can even present code found within any GitHub GIST.)
-@[41-53](GIST source code is beautifully rendered on any slide.)
-@[57-62](And code-presenting works seamlessly for GIST too, both online and offline.)
-
----?image=assets/image/snowscape.jpg&size=auto 80%&color=#7a1c42
-
-<!-- Sample slide background image scaling and custom color fill -->
-
----
-
-## Template Help
-
-- [Code Presenting](https://github.com/gitpitch/gitpitch/wiki/Code-Presenting)
-  - [Repo Source](https://github.com/gitpitch/gitpitch/wiki/Code-Delimiter-Slides), [Static Blocks](https://github.com/gitpitch/gitpitch/wiki/Code-Slides), [GIST](https://github.com/gitpitch/gitpitch/wiki/GIST-Slides)
-- [Custom CSS Styling](https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS)
-- [Slideshow Background Images](https://github.com/gitpitch/gitpitch/wiki/Background-Setting)
-- [Background Image Scaling](https://github.com/gitpitch/gitpitch/wiki/Image-Slides#scaling)
-- [Custom Logo](https://github.com/gitpitch/gitpitch/wiki/Logo-Setting), [TOC](https://github.com/gitpitch/gitpitch/wiki/Table-of-Contents), and [Footnotes](https://github.com/gitpitch/gitpitch/wiki/Footnote-Setting)
-
----
-
-## GitPitch Pro Features
-
-<br>
-<div class="left">
-    <i class="fa fa-user-secret fa-5x" aria-hidden="true"> </i><br>
-    <a href="https://gitpitch.com/pro-features" class="pro-link">
-    More details here.</a>
-</div>
-<div class="right">
-    <ul>
-        <li>Private Repos</li>
-        <li>Private URLs</li>
-        <li>Password-Protection</li>
-        <li>Image Opacity</li>
-        <li>SVG Image Support</li>
-    </ul>
-</div>
+- Real-time preventive assistance at the developer workstation: the most pro-active way of ensuring license compliance detects violations immediately and automatically at the developer workstation in real-time. The development process is not disturbed, and the cost of corrections is minimized, as any necessary corrections are done immediately without calling on external resources or requiring re-testing. The process can be automated using unobtrusive software tools that do not require developers to be trained in legal compliance. Managing licenses in real-time is generally the most cost efficient and lowest risk option.
 
 ---
 
 ### Questions?
-
-<br>
-
-@fa[twitter gp-contact](@gitpitch)
-
-@fa[github gp-contact](gitpitch)
-
-@fa[medium gp-contact](@gitpitch)
-
----?image=assets/image/gitpitch-audience.jpg
-
-@title[Download this Template!]
-
-### <span class="white">Get your presentation started!</span>
-
-### [Download this template @fa[external-link gp-download]](https://gitpitch.com/template/download/petals)
