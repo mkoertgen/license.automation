@@ -27,8 +27,8 @@
 
 ### Some Terminology
 
-- [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools)
-- [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis)
+- [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools) |
+- [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis) |
 
 ---
 
@@ -46,7 +46,7 @@
 
 - Source Code |
 - Dependencies |
-- Services, Docker images, ...
+- Services, Docker images, ... |
 
 ---
 
@@ -74,8 +74,12 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Dependency Scanning
 
-- [FOSSA](https://fossa.io/)
-- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
+- [FOSSA](https://fossa.io/) |
+- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder) |
+
+---
+
+## Demo
 
 ---
 
