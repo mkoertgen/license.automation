@@ -36,14 +36,14 @@
 
 ---
 
-### Managing Open Source Licensing @fa[balance-scale]
+### @fa[balance-scale] Managing Open Source Licensing
 
 @ul
 
 - @color[red](Do nothing) @fa[frown]
 - @color[orange](Developer training and project planning) @fa[meh]
-- @color[yellow](Post-development license analysis and correction) @fa[smile]
-- @color[green](Periodic assessment) @fa[smile-wink]
+- @color[yellow](Post-dev license analysis and correction) @fa[smile]
+- @color[green](Periodic assessment, automated) @fa[smile-wink]
 - @color[green](Real-time preventive assistance at developer workstation) @fa[grin]
 
 @ulend
