@@ -81,6 +81,45 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ## Demo
 
++++
+
+### STEP 1. Deploy license scanner
+
+Using git
+
+```console
+git clone https://github.com/mkoertgen/license.automation.git
+cd license.automation
+docker-compose up -d
+```
+
+@[1-2](Clone repository)
+@[3](Startup containers)
+
++++
+
+### STEP 2. Add webhook
+
+**For Github**, goto _Settings -> Webhook -> Add webhook_ and enter the url to the scanner
+
+![Github Webhook](assets/image/github_webhook.jpg)
+
++++
+
+### STEP 2. Add webhook
+
+**For Gitlab**, goto _Settings -> Integration_ and enter the url to the scanner
+
+![Github Webhook](assets/image/github_webhook.jpg)
+
++++
+
+### STEP 3. Visit license dashboard
+
+Finall, see the analyzed packages in the [Kibana dashboard](http://localhost:5601).
+
+![License Dashboard](assets/image/dashboard.jpg)
+
 ---
 
 ### Costs to Detect and Fix Licensing Policy Violations
@@ -93,12 +132,16 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Observations from Analysis Scenarios
 
-- The larger the project, the higher the probability compliance violations.
-
+- The larger the project, the higher the probability of compliance violations.
 - Ignoring licensing compliance can be costly, and it is difficult to put an upper limit on the cost of shipping non-compliant software.
-
 - Corrective analysis, using automated tools at regular intervals and during QA reduces the overall cost significantly.
 
----
-
 ### Questions?
+
+<br>
+
+@fa[twitter gp-contact](@mkoertg)
+
+@fa[github gp-contact](mkoertgen)
+
+@fa[medium gp-contact](@marcel.koertgen)
