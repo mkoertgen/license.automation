@@ -16,7 +16,7 @@
 
 ---
 
-### [The Cost of Open Source Licensing Compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance)
+### [The Cost of Open Source Licensing Compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance) @fa[blogger]
 
 > Proper licensing and copyright compliance, implemented
 > as part of the normal QA process, can yield savings of
@@ -43,8 +43,8 @@
 - @color[red](Do nothing) @fa[frown]
 - @color[orange](Developer training and project planning) @fa[meh]
 - @color[yellow](Post-development license analysis and correction) @fa[smile]
-- @color[green](Periodic assessment) @fa[grin]
-- Real-time preventive assistance at developer workstation @fa[grin-stars]
+- @color[green](Periodic assessment) @fa[smile-wink]
+- Real-time preventive assistance at developer workstation @fa[grin]
 
 @ulend
 
@@ -78,7 +78,7 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Some Code Scanners
 
-- [nexB/scancode-toolkit](https://github.com/nexB/scancode-toolkit)
+- [nexB/scancode-toolkit](https://github.com/nexB/scancode-toolkit) @fa[github]
 - [AboutCode.Org](https://www.aboutcode.org/)
 - [Ninka](http://ninka.turingmachine.org/)
 
@@ -87,7 +87,7 @@ it under the terms of the GNU General Public License as published by the Free So
 ### Dependency Scanning
 
 - [FOSSA](https://fossa.io/)
-- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
+- [pivotal-legacy/LicenseFinder] @fa[github](https://github.com/pivotal-legacy/LicenseFinder)
 
 ---
 
@@ -112,7 +112,7 @@ docker-compose up -d
 
 ### STEP 2. Add webhook
 
-**For Github**, goto _Settings -> Webhook -> Add webhook_
+@fa[github] **For Github**, goto _Settings -> Webhook -> Add webhook_
 
 ![Github Webhook](assets/image/github_webhook.jpg)
 
@@ -120,13 +120,13 @@ docker-compose up -d
 
 ### STEP 2. Add webhook
 
-**For Gitlab**, goto _Settings -> Integration_
+@fa[gitlab] **For Gitlab**, goto _Settings -> Integration_
 
 ![Gitlab Webhook](assets/image/gitlab_webhook.jpg)
 
 +++
 
-### STEP 3. Visit license dashboard
+### STEP 3. Visit license dashboard @fa[chart-line]
 
 Review licenses in [Kibana dashboard](http://localhost:5601)
 
@@ -138,7 +138,7 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 @ul
 
-- @color[red](**$20,000**] cost of licensing non-compliance discovered @color[red](**in the field**)
+- @color[red](**$20,000**) cost of licensing non-compliance discovered @color[red](**in the field**)
 - @color[yellow](**$1,500**) cost of licensing non-compliance discovered @color[yellow](**during QA**)
 - @color[green](**$40**) to fix policy violation @color[green](**discovered at developer's workstation**)
 
