@@ -1,5 +1,10 @@
 # TODO: One we have mono/nuget-PR accepted (5.3.1?) skip installation
 FROM licensefinder/license_finder:5.3.0
+
+ARG http_proxy=
+ARG https_proxy=
+ARG no_proxy=
+
 # install nuget/mono, cf.:
 # - https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#macoslinux
 RUN apt-key adv --keyserver-options http-proxy=${http_proxy} --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF &&\
