@@ -27,26 +27,38 @@
 
 ### Some Terminology
 
+@ul
+
 - [Software Asset Management (SAM)](https://www.gartner.com/reviews/market/software-asset-management-tools)
 - [Software Composition Analysis (SCA)](https://resources.whitesourcesoftware.com/blog-whitesource/software-composition-security-analysis)
+
+@ulend
 
 ---
 
 ### Managing Open Source Licensing
 
-- Do nothing |
-- Developer training and project planning |
-- Post-development license analysis and correction |
-- Periodic assessment |
-- Real-time preventive assistance at the developer workstation |
+@ul
+
+- @color[red](Do nothing)
+- @color[orange](Developer training and project planning)
+- @color[yellow](Post-development license analysis and correction)
+- @color[green](Periodic assessment)
+- Real-time preventive assistance at the developer workstation
+
+@ulend
 
 ---
 
 ### Types of Software Components
 
-- Source Code |
-- Dependencies |
-- Services, Docker images, ... |
+@ul
+
+- Source Code
+- Dependencies
+- Services, Docker images, ...
+
+@ulend
 
 ---
 
@@ -74,8 +86,12 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Dependency Scanning
 
+@ul
+
 - [FOSSA](https://fossa.io/)
 - [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
+
+@ulend
 
 ---
 
@@ -124,17 +140,25 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ### Costs to Detect and Fix Licensing Policy Violations
 
-- @color[red]($20,000 avg. cost) of licensing non-compliance discovered in the field. |
-- @color[yellow]($1,500 avg. cost) of licensing non-compliance discovered during quality assurance. |
-- @color[green]($40 avg. cost) to fix a policy violation discovered at the developer's workstation. |
+@ul
+
+- @color[red]($20,000 avg. cost) of licensing non-compliance discovered in the field.
+- @color[yellow]($1,500 avg. cost) of licensing non-compliance discovered during quality assurance.
+- @color[green]($40 avg. cost) to fix a policy violation discovered at the developer's workstation.
+
+@ulend
 
 ---
 
 ### Observations from Analysis Scenarios
 
-- The larger the project, the higher the probability of compliance violations. |
-- Ignoring licensing compliance can be costly, and it is difficult to put an upper limit on the cost of shipping non-compliant software. |
-- Corrective analysis, using automated tools at regular intervals and during QA reduces the overall cost significantly. |
+@ul
+
+- @color[red](The larger the project), the higher the probability of compliance violations.
+- @color[red](Ignoring licensing compliance can be costly), and it is @color[orange](**difficult to put an upper limit**) on the cost of shipping non-compliant software.
+- @color[green]Corrective analysis, using automated tools) at regular intervals and during QA reduces the overall cost significantly.
+
+@ulend
 
 ---
 
