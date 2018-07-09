@@ -100,7 +100,7 @@ docker-compose up -d
 
 ### STEP 2. Add webhook
 
-**For Github**, goto _Settings -> Webhook -> Add webhook_ and enter the url to the scanner
+**For Github**, goto _Settings -> Webhook -> Add webhook_
 
 ![Github Webhook](assets/image/github_webhook.jpg)
 
@@ -108,7 +108,7 @@ docker-compose up -d
 
 ### STEP 2. Add webhook
 
-**For Gitlab**, goto _Settings -> Integration_ and enter the url to the scanner
+**For Gitlab**, goto _Settings -> Integration_
 
 ![Github Webhook](assets/image/github_webhook.jpg)
 
@@ -116,7 +116,7 @@ docker-compose up -d
 
 ### STEP 3. Visit license dashboard
 
-Finall, see the analyzed packages in the [Kibana dashboard](http://localhost:5601).
+Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ![License Dashboard](assets/image/dashboard.jpg)
 
@@ -124,17 +124,19 @@ Finall, see the analyzed packages in the [Kibana dashboard](http://localhost:560
 
 ### Costs to Detect and Fix Licensing Policy Violations
 
-- $20,000 average cost of licensing non-compliance discovered in the field
-- $1,500 average cost of licensing non-compliance discovered during quality assurance.
-- $40 average cost to fix a policy violation discovered at the developer's workstation.
+- @color[red]($20,000 avg. cost) of licensing non-compliance discovered in the field. |
+- @color[yellow]($1,500 avg. cost) of licensing non-compliance discovered during quality assurance. |
+- @color[green]($40 avg. cost) to fix a policy violation discovered at the developer's workstation. |
 
 ---
 
 ### Observations from Analysis Scenarios
 
-- The larger the project, the higher the probability of compliance violations.
-- Ignoring licensing compliance can be costly, and it is difficult to put an upper limit on the cost of shipping non-compliant software.
-- Corrective analysis, using automated tools at regular intervals and during QA reduces the overall cost significantly.
+- The larger the project, the higher the probability of compliance violations. |
+- Ignoring licensing compliance can be costly, and it is difficult to put an upper limit on the cost of shipping non-compliant software. |
+- Corrective analysis, using automated tools at regular intervals and during QA reduces the overall cost significantly. |
+
+---
 
 ### Questions?
 
