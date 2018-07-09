@@ -37,3 +37,21 @@ POST http://localhost:3000/api/github
   }
 }
 ```
+
+Next, see the analyzed packages in the [Kibana dashboard](http://localhost:5601).
+
+![License Dashboard](assets/image/dashboard.jpg)
+
+## Continuous License Analysis
+
+To analyze depency licenses in an automated fashion, host/deploy the scanner and add the webhook to your projects.
+
+You will need the scanner deployed somewhere where Github/Gitlab can post the _Push Event Payload_ to.
+
+**For Github**, goto _Settings -> Webhook -> Add webhook_ and enter the url to the scanner
+
+![Github Webhook](assets/image/github_webhook.jpg)
+
+**For Gitlab**, goto _Settings -> Integration_ and enter the url to the scanner
+
+![Github Webhook](assets/image/github_webhook.jpg)
