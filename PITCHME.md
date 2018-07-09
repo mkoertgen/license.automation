@@ -4,19 +4,19 @@
 
 ---
 
-### Are we legal? @fa[lightbulb]
+### @fa[lightbulb] Are we legal?
 
 ![How to keep track](https://memegen.link/noidea/how_to_keep_track../...of_all_my_dependencies~q.jpg?watermark=none)
 
 ---
 
-### Are we legal? @fa[lightbulb]
+### @fa[lightbulb] Are we legal?
 
 ![I need a tracker](http://m.memegen.com/hnrsmk.jpg)
 
 ---
 
-### [The Cost of Open Source Licensing Compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance) @fa[blogger]
+### @fa[blogger][the cost of open source licensing compliance](http://www.industryweek.com/software-amp-systems/cost-open-source-licensing-compliance)
 
 > Proper licensing and copyright compliance, implemented
 > as part of the normal QA process, can yield savings of
@@ -40,11 +40,11 @@
 
 @ul
 
-- @fa[frown] @color[red](Do nothing)
-- @fa[meh] @color[orange](Developer training and project planning)
-- @fa[smile] @color[yellow](Post-development license analysis and correction)
-- @fa[smile-wink] @color[green](Periodic assessment)
-- @fa[grin] Real-time preventive assistance at developer workstation
+- @color[red](Do nothing) @fa[frown]
+- @color[orange](Developer training and project planning) @fa[meh]
+- @color[yellow](Post-development license analysis and correction) @fa[smile]
+- @color[green](Periodic assessment) @fa[smile-wink]
+- @color[green](Real-time preventive assistance at developer workstation) @fa[grin]
 
 @ulend
 
@@ -55,8 +55,8 @@
 @ul
 
 - Source Code @fa[code]
-- **Dependencies** @fa[cubes], @fa[npm]
-- Services @fa[docker] @fa[cogs]
+- **Dependencies** @fa[cubes] @fa[npm]
+- Services @fa[cogs] @fa[docker]
 
 @ulend
 
@@ -87,7 +87,7 @@ it under the terms of the GNU General Public License as published by the Free So
 ### Dependency Scanning
 
 - [FOSSA](https://fossa.io/)
-- [pivotal-legacy/LicenseFinder] @fa[github](https://github.com/pivotal-legacy/LicenseFinder)
+- [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder) @fa[github]
 
 ---
 
@@ -110,23 +110,23 @@ docker-compose up -d
 
 +++
 
-### STEP 2. Add webhook
+### STEP 2. Add webhook (Github)
 
-@fa[github] **For Github**, goto _Settings -> Webhook -> Add webhook_
+@fa[github] _Settings -> Webhook -> Add webhook_
 
 ![Github Webhook](assets/image/github_webhook.jpg)
 
 +++
 
-### STEP 2. Add webhook
+### STEP 2. Add webhook (Gitlab)
 
-@fa[gitlab] **For Gitlab**, goto _Settings -> Integration_
+@fa[gitlab] _Settings -> Integration_
 
 ![Gitlab Webhook](assets/image/gitlab_webhook.jpg)
 
 +++
 
-### STEP 3. Visit license dashboard @fa[chart-line]
+### STEP 3. View dashboard @fa[chart-line]
 
 Review licenses in [Kibana dashboard](http://localhost:5601)
 
@@ -134,25 +134,25 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ---
 
-### Costs of Licensing Policy Violations @fa[donate]
+### @fa[donate] Costs of Licensing Policy Violations
 
 @ul
 
 - @color[red](**$20,000**) cost of licensing non-compliance discovered @color[red](**in the field**)
 - @color[yellow](**$1,500**) cost of licensing non-compliance discovered @color[yellow](**during QA**)
-- @color[green](**$40**) to fix policy violation @color[green](**discovered at developer's workstation**)
+- @color[green](**$40**) to fix policy violation @color[green](**at developer's workstation**)
 
 @ulend
 
 ---
 
-### Observations from Analysis Scenarios @fa[eye]
+### @fa[eye] Observations from Analysis Scenarios
 
 @ul
 
 - @color[red](The larger the project), the higher the probability of compliance violations.
-- @color[red](Ignoring licensing compliance can be costly), and it is @color[orange](**difficult to put an upper limit**) on the cost of shipping non-compliant software.
-- @color[green]Corrective analysis, using automated tools) at regular intervals and during QA reduces the overall cost significantly.
+- @color[orange](Ignoring licensing compliance can be costly), and it is @color[orange](**difficult to put an upper limit**) on the cost of shipping non-compliant software.
+- @color[green](Corrective analysis, using automated tools) at perdiodically/during QA reduces overall cost significantly.
 
 @ulend
 
@@ -160,10 +160,12 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ### Questions?
 
-<br>
+Reach out
 
-@fa[twitter gp-contact](@mkoertg)
+@ul
 
-@fa[github gp-contact](mkoertgen)
+- @fa[twitter gp-contact](@mkoertg)
+- @fa[github gp-contact](mkoertgen)
+- @fa[medium gp-contact](@marcel.koertgen)
 
-@fa[medium gp-contact](@marcel.koertgen)
+@ulend
