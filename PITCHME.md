@@ -150,9 +150,9 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 @ul
 
-- @color[red](The larger the project), the higher the probability of compliance violations.
-- @color[orange](Ignoring licensing compliance can be costly), and it is @color[orange](**difficult to put an upper limit**) on the cost of shipping non-compliant software.
-- @color[green](Corrective analysis, using automated tools) at perdiodically/during QA reduces overall cost significantly.
+- @color[red](The larger the project), the higher the probability of compliance violations
+- @color[orange](Ignoring licensing compliance can be costly), and it is @color[orange](**difficult to put an upper limit**) on the cost of shipping non-compliant software
+- @color[green](Corrective analysis, using automated tools)periodically/during QA reduces overall cost significantly
 
 @ulend
 
@@ -160,12 +160,10 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ### Questions?
 
-Reach out
+Reach out <br/>
 
-@ul
+@fa[twitter gp-contact](@mkoertg)
 
-- @fa[twitter gp-contact](@mkoertg)
-- @fa[github gp-contact](mkoertgen)
-- @fa[medium gp-contact](@marcel.koertgen)
+@fa[github gp-contact](mkoertgen)
 
-@ulend
+@fa[medium gp-contact](@marcel.koertgen)
