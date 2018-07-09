@@ -54,4 +54,4 @@ You will need the scanner deployed somewhere where Github/Gitlab can post the _P
 
 **For Gitlab**, goto _Settings -> Integration_ and enter the url to the scanner
 
-![Github Webhook](assets/image/github_webhook.jpg)
+![Gitlab Webhook](assets/image/gitlab_webhook.jpg)

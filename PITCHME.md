@@ -4,13 +4,13 @@
 
 ---
 
-### Are we legal?
+### Are we legal? @fa[lightbulb]
 
 ![How to keep track](https://memegen.link/noidea/how_to_keep_track../...of_all_my_dependencies~q.jpg?watermark=none)
 
 ---
 
-### Are we legal?
+### Are we legal? @fa[lightbulb]
 
 ![I need a tracker](http://m.memegen.com/hnrsmk.jpg)
 
@@ -36,15 +36,15 @@
 
 ---
 
-### Managing Open Source Licensing
+### Managing Open Source Licensing @fa[balance-scale]
 
 @ul
 
-- @color[red](Do nothing)
-- @color[orange](Developer training and project planning)
-- @color[yellow](Post-development license analysis and correction)
-- @color[green](Periodic assessment)
-- Real-time preventive assistance at the developer workstation
+- @color[red](Do nothing) @fa[frown]
+- @color[orange](Developer training and project planning) @fa[meh]
+- @color[yellow](Post-development license analysis and correction) @fa[smile]
+- @color[green](Periodic assessment) @fa[grin]
+- Real-time preventive assistance at developer workstation @fa[grin-stars]
 
 @ulend
 
@@ -54,9 +54,9 @@
 
 @ul
 
-- Source Code
-- Dependencies
-- Services, Docker images, ...
+- Source Code @fa[code]
+- **Dependencies** @fa[cubes], @fa[npm]
+- Services @fa[docker] @fa[cogs]
 
 @ulend
 
@@ -86,12 +86,8 @@ it under the terms of the GNU General Public License as published by the Free So
 
 ### Dependency Scanning
 
-@ul
-
 - [FOSSA](https://fossa.io/)
 - [pivotal-legacy/LicenseFinder](https://github.com/pivotal-legacy/LicenseFinder)
-
-@ulend
 
 ---
 
@@ -126,7 +122,7 @@ docker-compose up -d
 
 **For Gitlab**, goto _Settings -> Integration_
 
-![Github Webhook](assets/image/github_webhook.jpg)
+![Gitlab Webhook](assets/image/gitlab_webhook.jpg)
 
 +++
 
@@ -138,19 +134,19 @@ Review licenses in [Kibana dashboard](http://localhost:5601)
 
 ---
 
-### Costs to Detect and Fix Licensing Policy Violations
+### Costs of Licensing Policy Violations @fa[donate]
 
 @ul
 
-- @color[red]($20,000 avg. cost) of licensing non-compliance discovered in the field.
-- @color[yellow]($1,500 avg. cost) of licensing non-compliance discovered during quality assurance.
-- @color[green]($40 avg. cost) to fix a policy violation discovered at the developer's workstation.
+- @color[red](**$20,000**] cost of licensing non-compliance discovered @color[red](**in the field**)
+- @color[yellow](**$1,500**) cost of licensing non-compliance discovered @color[yellow](**during QA**)
+- @color[green](**$40**) to fix policy violation @color[green](**discovered at developer's workstation**)
 
 @ulend
 
 ---
 
-### Observations from Analysis Scenarios
+### Observations from Analysis Scenarios @fa[eye]
 
 @ul
 
