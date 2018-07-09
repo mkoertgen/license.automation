@@ -40,11 +40,11 @@
 
 @ul
 
-- @color[red](Do nothing) @fa[frown]
-- @color[orange](Developer training and project planning) @fa[meh]
-- @color[yellow](Post-development license analysis and correction) @fa[smile]
-- @color[green](Periodic assessment) @fa[smile-wink]
-- Real-time preventive assistance at developer workstation @fa[grin]
+- @fa[frown] @color[red](Do nothing)
+- @fa[meh] @color[orange](Developer training and project planning)
+- @fa[smile] @color[yellow](Post-development license analysis and correction)
+- @fa[smile-wink] @color[green](Periodic assessment)
+- @fa[grin] Real-time preventive assistance at developer workstation
 
 @ulend
 
