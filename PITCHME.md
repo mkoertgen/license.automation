@@ -1,6 +1,6 @@
 @title[Introduction]
 
-### Automated License Complicance Analysis
+### Automated License Compliance Analysis
 
 ---
 
